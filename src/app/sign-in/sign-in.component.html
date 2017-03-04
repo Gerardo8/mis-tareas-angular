@@ -1,0 +1,17 @@
+<div class="login-wrapper">
+  <form (ngSubmit)="signIn()" class="login" #signInForm="ngForm">
+    <label class="title">
+      Mex Movil<span class="trademark">&#8482;</span>
+      <br>
+      Mis tareas&#174;
+    </label>
+    <div class="login-group">
+      <input class="username" type="text" id="sig_in_username" placeholder="Usuario o email"
+             required [(ngModel)]="model.username" name="username" #username="ngModel">
+      <input class="password" type="password" id="sign_in_password" placeholder="Contraseña"
+             required [(ngModel)]="model.password" name="password" #password="ngModel">
+      <button type="submit" class="btn btn-primary" [disabled]="!signInForm.form.valid">Sign In</button>
+      <a routerLink="/sign-up" class="signup">Sign Up</a>
+    </div>
+  </form>
+</div>

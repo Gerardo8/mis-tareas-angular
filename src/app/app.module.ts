@@ -2,21 +2,46 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {Router} from "@angular/router";
+import { ClarityModule } from "clarity-angular";
 
 import { AppComponent } from './app.component';
-import { ClarityModule } from "clarity-angular";
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { PageNotFoundComponent } from "./shared/components/page-not-found/page-not-found.component";
+import { requestOptionsProvider } from "./shared/services/default-request-options.service";
+import { AuthenticationService } from "./shared/services/authentication.service";
+import { AuthGuard } from "./shared/guards/auth.guard";
+import {Credentials} from "./shared/models/credentials";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignInComponent,
+    SignUpComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppRoutingModule,
     ClarityModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    requestOptionsProvider
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private authenticationService:AuthenticationService, private router: Router) {
+    authenticationService.authenticate(new Credentials()).subscribe(
+      principal => router.navigate(['/'])
+    );
+  }
+}
