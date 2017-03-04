@@ -9,8 +9,6 @@ import { Principal } from "../models/principal";
 @Injectable()
 export class AuthenticationService {
 
-  authenticated: boolean = false;
-
   constructor(private http: Http, private requestOptions: RequestOptions) {}
 
   authenticate(credentials: Credentials) : Observable<Principal> {

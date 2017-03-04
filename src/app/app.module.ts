@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {Router} from "@angular/router";
 import { ClarityModule } from "clarity-angular";
 
 import { AppComponent } from './app.component';
@@ -14,7 +13,6 @@ import { PageNotFoundComponent } from "./shared/components/page-not-found/page-n
 import { requestOptionsProvider } from "./shared/services/default-request-options.service";
 import { AuthenticationService } from "./shared/services/authentication.service";
 import { AuthGuard } from "./shared/guards/auth.guard";
-import {Credentials} from "./shared/models/credentials";
 
 @NgModule({
   declarations: [
