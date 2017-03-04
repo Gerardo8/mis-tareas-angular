@@ -38,10 +38,4 @@ import {Credentials} from "./shared/models/credentials";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private authenticationService:AuthenticationService, private router: Router) {
-    authenticationService.authenticate(new Credentials()).subscribe(
-      principal => router.navigate(['/'])
-    );
-  }
-}
+export class AppModule {}
